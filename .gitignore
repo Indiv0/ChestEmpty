@@ -12,3 +12,5 @@ local.properties
 .classpath
 .settings/
 .loadpath
+.gitattributes
+.gitignore
