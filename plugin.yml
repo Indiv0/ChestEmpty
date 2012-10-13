@@ -1,0 +1,10 @@
+name: ChestEmpty
+main: com.github.Indiv0.ChestEmpty.ChestEmpty
+version: 1.0
+
+commands:
+  chestempty:
+    description: This command controls all functions of the ChestEmpty plugin.
+    usage: /<command> [toggle|undo]
+    permission: chestempty.use
+    permission-message: Sorry, you don't have permission to use ChestEmpty
