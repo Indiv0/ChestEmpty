@@ -3,6 +3,7 @@ package com.github.Indiv0.ChestEmpty;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.Chest;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -17,10 +18,14 @@ public class BlockSelectionListener implements Listener {
     // Create a method to handle/interact with clicking events.
     @EventHandler
     public void onChestHit(PlayerInteractEvent event) {
+        if(event.getAction() != org.bukkit.event.block.Action.LEFT_CLICK_BLOCK) return;
+        
+        // Makes sure the player is currently in selection mode.
         if(!plugin.isSelecting(event.getPlayer().getDisplayName())) return;
 
         Block clickedBlock = event.getClickedBlock();
         
+        // Makes sure that the clicked block is a chest.
         try {
             if(clickedBlock.getType() != Material.CHEST)
                 return;
@@ -28,17 +33,20 @@ public class BlockSelectionListener implements Listener {
             return;
         }
         
-        if(event.getAction() != org.bukkit.event.block.Action.LEFT_CLICK_BLOCK)
-            return;
-
         Chest chest = (Chest)clickedBlock.getState();
+        Player player = event.getPlayer();
+        
+        // Checks to make sure that the chest has items.
+        if(chest.getBlockInventory().getSize() == 0) {
+            player.sendMessage("This chest is empty. It cannot be cleared.");
+            return;
+        }
 
-        if(chest.getBlockInventory().getSize() == 0) return;
-
-        plugin.addItemBackup(chest, event.getPlayer());
+        // Creates a backup of the items, then deletes them.
+        plugin.addChestInventoryBackup(chest, player);
         chest.getInventory().clear();
         chest.update();
 
-        event.getPlayer().sendMessage("Chest successfully emptied.");
+        player.sendMessage("Chest successfully emptied.");
     }
 }
