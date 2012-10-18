@@ -1,5 +1,6 @@
 package com.github.Indiv0.ChestEmpty;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -14,6 +15,7 @@ import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.mcstats.MetricsLite;
 
 public class ChestEmpty extends JavaPlugin {
     // Stores the players currently emptying chests.
@@ -31,6 +33,9 @@ public class ChestEmpty extends JavaPlugin {
         // Registers the blockListener with the PluginManager.
         pm.registerEvents(this.blockListener, this);
 
+        // Enable PluginMetrics.
+        enableMetrics();
+        
         // Prints a message to the server confirming successful initialization of the plugin.
         PluginDescriptionFile pdfFile = this.getDescription();
         getLogger().info(pdfFile.getName() + " " + pdfFile.getVersion() + " is enabled.");
@@ -88,6 +93,16 @@ public class ChestEmpty extends JavaPlugin {
         }
         
         return false;
+    }
+
+    private void enableMetrics()
+    {
+        try {
+            MetricsLite metrics = new MetricsLite(this);
+            metrics.start();
+        } catch (IOException ex) {
+            System.out.println("An error occured while appempting to connect to PluginMetrics.");
+        }
     }
 
     private void undoDeleteChestContents(CommandSender sender) {
