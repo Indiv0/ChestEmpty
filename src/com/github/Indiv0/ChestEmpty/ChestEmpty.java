@@ -3,6 +3,8 @@ package com.github.Indiv0.ChestEmpty;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map.Entry;
 
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -109,43 +111,68 @@ public class ChestEmpty extends JavaPlugin {
         Player player = (Player) sender;
         
         // Checks to see if the cache has a backup for that user.
-        if(lastDeletedItems.isEmpty() || player.hasMetadata("ChestBackupID") == false) {
-            sender.sendMessage("No items to restore.");
+        if (!player.hasMetadata("ChestBackupID")) {
+            sender.sendMessage("Player has not emptied any chests.");
+            return;
+        }
+        
+        if (lastDeletedItems.isEmpty()) {
+            sender.sendMessage("No chest backups exist.");
+            player.removeMetadata("ChestBackupID", this);
             return;
         }
         
         // Checks every chest within the cache (this is probably a performance bottleneck).
-        for(Block block : lastDeletedItems.keySet())
+        Iterator<Entry<Block, ItemStack[]>> iter = lastDeletedItems.entrySet().iterator();
+        while (iter.hasNext()) {
+            Block block = (Block) iter.next();
+            ArrayList<Block> blocksToRemove = new ArrayList<Block>();
+            
             // Checks if the player's metadata stores the same hashCode as the hashCode of the block
             // (i.e. the same chest is being referenced).
-            if(player.getMetadata("ChestBackupID").get(0).asInt() != block.hashCode()) 
-            {
-                // Checks to make sure the block has not been converted into another block since
-                // the chest was emptied.
-                if(block.getType() != Material.CHEST)
-                    sender.sendMessage("An item could not be restored.");
-                else {
-                    Chest chest = (Chest) block.getState();;
-                    
-                    // Returns the deleted items into the chest.
-                    // This should be tested for what happens when the chest is full and items get
-                    // restored.
-                    for(ItemStack itemStack : lastDeletedItems.get(block))
-                        if(itemStack != null)
-                            chest.getInventory().addItem(itemStack);
-                }
+            if(player.getMetadata("ChestBackupID").get(0).asInt() == block.hashCode())
+                continue;
+
+            // Removes the hashcode of the chest from the player's metadata.
+            player.removeMetadata("ChestBackupID", this);
+            blocksToRemove.add(block);
+            
+            // Checks to make sure the block has not been converted into another block since
+            // the chest was emptied.
+            if(block.getType() != Material.CHEST) {
+                sender.sendMessage("Cannot restore inventory: block no longer a chest.");
+                continue;
+            }
+            
+            Chest chest = (Chest) block.getState();
+            
+            // Returns the deleted items into the chest.
+            // This should be tested for what happens when the chest is full and items get
+            // restored.
+        restore:
+            for(ItemStack itemStack : lastDeletedItems.get(block)) {
+                if(itemStack == null)
+                    continue restore;
                 
-                // Removes the hashcode of the chest from the player's metadata.
-                player.removeMetadata("ChestBackupID", this);
-                lastDeletedItems.remove(block);
+                chest.getInventory().addItem(itemStack);
             }
 
-        sender.sendMessage("Items successfully restored.");
+            // Removes any restored chests from the cache.
+            iter.remove();
+            sender.sendMessage("Items successfully restored.");
+            return;
+        }
     }
 
     public void addChestInventoryBackup(Chest chest, Player player)
     {
         Block block = (Block) chest.getBlock();
+        
+        // Searches for, and removes any previously added inventory backups for that block.
+        Iterator<Entry<Block, ItemStack[]>> iter = lastDeletedItems.entrySet().iterator();
+        while (iter.hasNext())
+            // If the chest has already been backed up, remove the iterator.
+            if (iter.next().getKey().hashCode() == block.hashCode()) iter.remove();
         
         // Adds the inventory of a chest into the cache, and stores its hashCode in the player's metadata.
         player.setMetadata("ChestBackupID", new FixedMetadataValue(this, block.hashCode()));
