@@ -125,12 +125,12 @@ public class ChestEmpty extends JavaPlugin {
         // Checks every chest within the cache (this is probably a performance bottleneck).
         Iterator<Entry<Block, ItemStack[]>> iter = lastDeletedItems.entrySet().iterator();
         while (iter.hasNext()) {
-            Block block = (Block) iter.next();
+            Block block = (Block) iter.next().getKey();
             ArrayList<Block> blocksToRemove = new ArrayList<Block>();
             
             // Checks if the player's metadata stores the same hashCode as the hashCode of the block
             // (i.e. the same chest is being referenced).
-            if(player.getMetadata("ChestBackupID").get(0).asInt() == block.hashCode())
+            if(player.getMetadata("ChestBackupID").get(0).asInt() != block.hashCode())
                 continue;
 
             // Removes the hashcode of the chest from the player's metadata.
