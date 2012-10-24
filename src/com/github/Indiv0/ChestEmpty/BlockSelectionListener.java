@@ -12,13 +12,13 @@ public class BlockSelectionListener implements Listener {
 
     public static ChestEmpty plugin;
 
-    public BlockSelectionListener (ChestEmpty instance) {
+    public BlockSelectionListener(ChestEmpty instance) {
         plugin = instance;
     }
 
     // Create a method to handle/interact with clicking events.
     @EventHandler
-    public void onChestHit (PlayerInteractEvent event) {
+    public void onChestHit(PlayerInteractEvent event) {
         if (event.getAction() != org.bukkit.event.block.Action.LEFT_CLICK_BLOCK) return;
 
         // Makes sure the player is currently in selection mode.

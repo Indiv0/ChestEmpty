@@ -30,7 +30,7 @@ public class ChestEmpty extends JavaPlugin {
     public final BlockSelectionListener blockListener = new BlockSelectionListener(this);
 
     @Override
-    public void onEnable () {
+    public void onEnable() {
         // Retrieves an instance of the PluginManager.
         PluginManager pm = getServer().getPluginManager();
 
@@ -47,7 +47,7 @@ public class ChestEmpty extends JavaPlugin {
     }
 
     @Override
-    public boolean onCommand (CommandSender sender, Command cmd, String label, String[] args) {
+    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         // Checks to see if the command is the "/chestempty" command.
         if (!cmd.getName().equalsIgnoreCase("chestempty")) return false;
 
@@ -102,7 +102,7 @@ public class ChestEmpty extends JavaPlugin {
         return false;
     }
 
-    private void enableMetrics ()
+    private void enableMetrics()
     {
         try {
             MetricsLite metrics = new MetricsLite(this);
@@ -112,7 +112,7 @@ public class ChestEmpty extends JavaPlugin {
         }
     }
 
-    private void undoDeleteChestContents (CommandSender sender) {
+    private void undoDeleteChestContents(CommandSender sender) {
         Player player = (Player) sender;
 
         // Checks to see if the cache has a backup for that user.
@@ -172,7 +172,7 @@ public class ChestEmpty extends JavaPlugin {
         }
     }
 
-    public void addChestInventoryBackup (Chest chest, Player player)
+    public void addChestInventoryBackup(Chest chest, Player player)
     {
         Block block = chest.getBlock();
 
@@ -189,7 +189,7 @@ public class ChestEmpty extends JavaPlugin {
         lastDeletedItems.put(block, chest.getInventory().getContents());
     }
 
-    public void toggleSelecting (String playerName, CommandSender sender)
+    public void toggleSelecting(String playerName, CommandSender sender)
     {
         // Toggles whether or not the player is currently in selection mode.
         if (isSelecting(playerName)) {
@@ -202,7 +202,7 @@ public class ChestEmpty extends JavaPlugin {
         }
     }
 
-    public boolean isSelecting (String playerName) {
+    public boolean isSelecting(String playerName) {
         // Checks to see if the player is currently in selection mode.
         return playersSelecting.contains(playerName);
     }
