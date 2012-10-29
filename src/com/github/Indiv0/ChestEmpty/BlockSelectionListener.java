@@ -1,3 +1,7 @@
+/**
+ *
+ * @author Indivisible0
+ */
 package com.github.Indiv0.ChestEmpty;
 
 import org.bukkit.Material;

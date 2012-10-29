@@ -1,3 +1,7 @@
+/**
+ *
+ * @author Indivisible0
+ */
 package com.github.Indiv0.ChestEmpty;
 
 import java.io.IOException;
@@ -22,9 +26,9 @@ import org.mcstats.MetricsLite;
 public class ChestEmpty extends JavaPlugin {
 
     // Stores the players currently emptying chests.
-    private ArrayList<String> playersSelecting = new ArrayList<String>();
+    private final ArrayList<String> playersSelecting = new ArrayList<String>();
     // Stores the chests and their last inventories prior to deletion.
-    private HashMap<Block, ItemStack[]> lastDeletedItems = new HashMap<Block, ItemStack[]>();
+    private final HashMap<Block, ItemStack[]> lastDeletedItems = new HashMap<Block, ItemStack[]>();
 
     // Initializes an ItemCraftListener.
     public final BlockSelectionListener blockListener = new BlockSelectionListener(this);
@@ -35,14 +39,14 @@ public class ChestEmpty extends JavaPlugin {
         PluginManager pm = getServer().getPluginManager();
 
         // Registers the blockListener with the PluginManager.
-        pm.registerEvents(this.blockListener, this);
+        pm.registerEvents(blockListener, this);
 
         // Enable PluginMetrics.
         enableMetrics();
 
         // Prints a message to the server confirming successful initialization
         // of the plugin.
-        PluginDescriptionFile pdfFile = this.getDescription();
+        PluginDescriptionFile pdfFile = getDescription();
         getLogger().info(pdfFile.getName() + " " + pdfFile.getVersion() + " is enabled.");
     }
 
