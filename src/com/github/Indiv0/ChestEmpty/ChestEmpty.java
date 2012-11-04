@@ -21,7 +21,8 @@ import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.mcstats.MetricsLite;
+
+import com.github.Indiv0.ChestEmpty.util.Metrics;
 
 public class ChestEmpty extends JavaPlugin {
 
@@ -109,7 +110,7 @@ public class ChestEmpty extends JavaPlugin {
     private void enableMetrics()
     {
         try {
-            MetricsLite metrics = new MetricsLite(this);
+            Metrics metrics = new Metrics(this);
             metrics.start();
         } catch (IOException ex) {
             System.out.println("An error occured while attempting to connect to PluginMetrics.");
