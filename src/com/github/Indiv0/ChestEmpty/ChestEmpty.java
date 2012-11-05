@@ -18,7 +18,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.FixedMetadataValue;
-import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -44,11 +43,6 @@ public class ChestEmpty extends JavaPlugin {
 
         // Enable PluginMetrics.
         enableMetrics();
-
-        // Prints a message to the server confirming successful initialization
-        // of the plugin.
-        PluginDescriptionFile pdfFile = getDescription();
-        getLogger().info(pdfFile.getName() + " " + pdfFile.getVersion() + " is enabled.");
     }
 
     @Override
