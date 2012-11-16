@@ -21,7 +21,7 @@ import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import com.github.Indiv0.ChestEmpty.util.Metrics;
+import com.github.Indiv0.util.Metrics;
 
 public class ChestEmpty extends JavaPlugin {
 
