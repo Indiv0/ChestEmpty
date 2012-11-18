@@ -2,7 +2,7 @@
  *
  * @author Indivisible0
  */
-package com.github.Indiv0.ChestEmpty;
+package com.github.indiv0.chestempty;
 
 import java.io.IOException;
 import java.util.ArrayList;

@@ -2,7 +2,7 @@
  *
  * @author Indivisible0
  */
-package com.github.Indiv0.ChestEmpty;
+package com.github.indiv0.chestempty;
 
 import org.bukkit.Material;
 import org.bukkit.block.Block;
