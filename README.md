@@ -1,33 +1,22 @@
-Description
-  ChestEmpty is a plugin for bukkit which is used for emptying chests with just a simple click.
+ChestEmpty [![Travis CI](https://secure.travis-ci.org/Indiv0/ChestEmpty.png)](http://travis-ci.org/#!/Indiv0/ChestEmpty)
+=============
 
-Permission
-  chestempty.use
-Commands
-  /chestempty [toggle|undo]
+ChestEmpty is a plugin for bukkit which is used for emptying chests with just a simple click.
 
-Usage
-  Use the command "/chestempty toggle" to activate selection mode.
-  When in selection mode, simply LEFT-CLICK on any NON-EMPTY chest in order to clear it.
-  In order to exit selection mode, simply type "/chestempty toggle" again.
-  
-  In order to restore the inventory of the last chest cleared by the player, use "/chestempty undo".
+Download:
+--------------------
 
-Source
-  https://github.com/Indiv0/ChestEmpty
-Download
-  https://github.com/downloads/Indiv0/ChestEmpty/ChestEmpty.jar
+You can find the latest release [here](https://github.com/Indiv0/indiv0-mvn-repo/raw/master/snapshots/com/github/indiv0/chestempty/1.2.0/chestempty-1.2.0.jar).
 
-Changelog
-  1.0
-    Base functionality implemented.
+For older and development versions, [see my maven repository](https://github.com/Indiv0/indiv0-mvn-repo/tree/master/snapshots/com/github/indiv0/chestempty/).
 
-Verified compatibility
-  1.0
-    CB 1.3.2 RB-1.0
+Developers :
+--------------------
 
-Bugs
-  None known.
+### Installation :
 
-ToDo
-  Add chest creation/filling, remote management features.
+Simply drop the latest .jar into the /plugins directory of your server.
+
+### Documentation & Usage
+
+Further information can be found on the ChestEmpty BukkitDev page [here] (http://dev.bukkit.org/server-mods/chestempty/).
