@@ -4,7 +4,6 @@
  */
 package com.github.indiv0.chestempty;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -18,31 +17,33 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.FixedMetadataValue;
-import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import com.github.indiv0.bukkitutils.Metrics;
+import com.github.indiv0.bukkitutils.UtilManager;
 
 public class ChestEmpty extends JavaPlugin {
+    private final UtilManager utilManager = new UtilManager();
 
     // Stores the players currently emptying chests.
     private final ArrayList<String> playersSelecting = new ArrayList<String>();
     // Stores the chests and their last inventories prior to deletion.
     private final HashMap<Block, ItemStack[]> lastDeletedItems = new HashMap<Block, ItemStack[]>();
 
-    // Initializes an ItemCraftListener.
-    public final BlockSelectionListener blockListener = new BlockSelectionListener(this);
+    @Override
+    public void onLoad() {
+        // Initialize all utilities.
+        utilManager.initialize(this);
+    }
 
     @Override
     public void onEnable() {
-        // Retrieves an instance of the PluginManager.
-        PluginManager pm = getServer().getPluginManager();
+        utilManager.getListenerUtil().registerListener(new BlockSelectionListener(this));
+    }
 
-        // Registers the blockListener with the PluginManager.
-        pm.registerEvents(blockListener, this);
-
-        // Enable PluginMetrics.
-        enableMetrics();
+    @Override
+    public void onDisable() {
+        // Cancels any tasks scheduled by this plugin.
+        getServer().getScheduler().cancelTasks(this);
     }
 
     @Override
@@ -99,16 +100,6 @@ public class ChestEmpty extends JavaPlugin {
         }
 
         return false;
-    }
-
-    private void enableMetrics()
-    {
-        try {
-            Metrics metrics = new Metrics(this);
-            metrics.start();
-        } catch (IOException ex) {
-            System.out.println("An error occured while attempting to connect to PluginMetrics.");
-        }
     }
 
     private void undoDeleteChestContents(CommandSender sender) {
