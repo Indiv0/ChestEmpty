@@ -1,6 +1,6 @@
 name: ChestEmpty
 main: com.github.indiv0.chestempty.ChestEmpty
-version: 1.2
+version: 1.2.1
 author: Indiv0
 description: A plugin which allows you to empty chests using commands.
 dev-url: http://github.com/Indiv0/ChestEmpty/
