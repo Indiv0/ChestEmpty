@@ -23,10 +23,12 @@ public class BlockSelectionListener implements Listener {
     // Create a method to handle/interact with clicking events.
     @EventHandler
     public void onChestHit(PlayerInteractEvent event) {
-        if (event.getAction() != org.bukkit.event.block.Action.LEFT_CLICK_BLOCK) return;
+        if (event.getAction() != org.bukkit.event.block.Action.LEFT_CLICK_BLOCK)
+            return;
 
         // Makes sure the player is currently in selection mode.
-        if (!plugin.isSelecting(event.getPlayer().getDisplayName())) return;
+        if (!plugin.isSelecting(event.getPlayer().getDisplayName()))
+            return;
 
         Block clickedBlock = event.getClickedBlock();
 
@@ -53,5 +55,7 @@ public class BlockSelectionListener implements Listener {
         chest.update();
 
         player.sendMessage("Chest successfully emptied.");
+
+        event.setCancelled(true);
     }
 }
