@@ -36,7 +36,8 @@ public class BlockSelectionListener implements Listener {
         try {
             if (clickedBlock.getType() != Material.CHEST)
                 return;
-        } catch (NullPointerException ex) {
+        }
+        catch (NullPointerException ex) {
             return;
         }
 

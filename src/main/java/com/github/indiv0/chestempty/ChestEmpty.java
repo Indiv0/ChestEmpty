@@ -49,7 +49,8 @@ public class ChestEmpty extends JavaPlugin {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         // Checks to see if the command is the "/chestempty" command.
-        if (!cmd.getName().equalsIgnoreCase("chestempty")) return false;
+        if (!cmd.getName().equalsIgnoreCase("chestempty"))
+            return false;
 
         // Checks to make sure a player is performing the command.
         if (!(sender instanceof Player)) {
@@ -171,7 +172,8 @@ public class ChestEmpty extends JavaPlugin {
         Iterator<Entry<Block, ItemStack[]>> iter = lastDeletedItems.entrySet().iterator();
         while (iter.hasNext())
             // If the chest has already been backed up, remove the iterator.
-            if (iter.next().getKey().hashCode() == block.hashCode()) iter.remove();
+            if (iter.next().getKey().hashCode() == block.hashCode())
+                iter.remove();
 
         // Adds the inventory of a chest into the cache, and stores its hashCode
         // in the player's metadata.
