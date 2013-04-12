@@ -2,7 +2,7 @@
  *
  * @author Indivisible0
  */
-package com.github.indiv0.chestempty;
+package in.nikitapek.chestempty;
 
 import org.bukkit.Material;
 import org.bukkit.block.Block;

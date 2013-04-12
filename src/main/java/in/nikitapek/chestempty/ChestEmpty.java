@@ -2,7 +2,9 @@
  *
  * @author Indivisible0
  */
-package com.github.indiv0.chestempty;
+package in.nikitapek.chestempty;
+
+import in.nikitapek.bukkitutils.UtilManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,8 +20,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import com.github.indiv0.bukkitutils.UtilManager;
 
 public class ChestEmpty extends JavaPlugin {
     private final UtilManager utilManager = new UtilManager();
