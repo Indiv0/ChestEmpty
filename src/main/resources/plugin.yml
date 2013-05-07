@@ -1,6 +1,7 @@
 name: ChestEmpty
 main: in.nikitapek.chestempty.ChestEmptyPlugin
-version: 1.7.0
+load: POSTWORLD
+version: ${project.version}
 author: Indiv0
 description: A plugin which allows you to empty chests using commands.
 dev-url: http://github.com/Indiv0/ChestEmpty/
