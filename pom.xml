@@ -4,20 +4,15 @@
 
   <groupId>in.nikitapek</groupId>
   <artifactId>chest-empty</artifactId>
-  <version>1.2.3</version>
-  <packaging>jar</packaging>
   <name>ChestEmpty</name>
+  <version>${mbapi.version}.0</version>
   <description>A Bukkit plugin which allows users to empty chests through clicks.</description>
   <url>http://dev.bukkit.org/server-mods/chestempty/</url>
-
-  <properties>
-    <bukkitutils.version>1.1.0</bukkitutils.version>
-  </properties>
 
   <parent>
     <groupId>com.amshulman</groupId>
     <artifactId>bukkit-parent</artifactId>
-    <version>0.6</version>
+    <version>0.8</version>
   </parent>
 
   <dependencies>
@@ -26,28 +21,31 @@
       <groupId>org.bukkit</groupId>
       <artifactId>bukkit</artifactId>
     </dependency>
-    <!-- BukkitUtils -->
+    <!-- Mbapi -->
     <dependency>
-      <groupId>in.nikitapek</groupId>
-      <artifactId>bukkit-utils</artifactId>
-      <version>${bukkitutils.version}</version>
+      <groupId>com.amshulman</groupId>
+      <artifactId>mbapi</artifactId>
     </dependency>
   </dependencies>
 
   <build>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+        <includes>
+          <include>plugin.yml</include>
+        </includes>
+      </resource>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>false</filtering>
+        <excludes>
+          <exclude>plugin.yml</exclude>
+        </excludes>
+      </resource>
+    </resources>
     <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-shade-plugin</artifactId>
-        <executions>
-          <execution>
-            <phase>package</phase>
-            <goals>
-              <goal>shade</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-dependency-plugin</artifactId>
@@ -68,7 +66,7 @@
                 </artifactItem>
               </artifactItems>
               <outputDirectory>/storage/server/plugins</outputDirectory>
-              <stripVersion>true</stripVersion>
+              <stripVersion>false</stripVersion>
             </configuration>
           </execution>
         </executions>
