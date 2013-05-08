@@ -7,7 +7,7 @@ import org.bukkit.Bukkit;
 
 import com.amshulman.mbapi.MbapiPlugin;
 
-public class ChestEmpty extends MbapiPlugin {
+public class ChestEmptyPlugin extends MbapiPlugin {
     @Override
     public void onEnable() {
         ChestEmptyConfigurationContext configurationContext = new ChestEmptyConfigurationContext(this);
