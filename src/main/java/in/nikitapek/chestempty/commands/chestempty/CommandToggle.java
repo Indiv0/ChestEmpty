@@ -1,35 +1,29 @@
 package in.nikitapek.chestempty.commands.chestempty;
 
+import in.nikitapek.chestempty.commands.CommandChestEmpty.ChestEmptyCommands;
+import in.nikitapek.chestempty.util.ChestEmptyConfigurationContext;
+
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-
-import in.nikitapek.chestempty.util.ChestEmptyConfigurationContext;
-import in.nikitapek.chestempty.util.Commands;
 
 import com.amshulman.mbapi.commands.PlayerOnlyCommand;
 import com.amshulman.typesafety.TypeSafeCollections;
 import com.amshulman.typesafety.TypeSafeList;
 
-public class CommandToggle extends PlayerOnlyCommand {
+public final class CommandToggle extends PlayerOnlyCommand {
     private final ChestEmptyConfigurationContext configurationContext;
 
     public CommandToggle(final ChestEmptyConfigurationContext configurationContext) {
-        super(configurationContext, Commands.TOGGLE, 0, 0);
+        super(configurationContext, ChestEmptyCommands.TOGGLE, 0, 0);
 
         this.configurationContext = configurationContext;
     }
 
     @Override
-    protected boolean executeForPlayer(Player player, TypeSafeList<String> args) {
+    protected boolean executeForPlayer(final Player player, final TypeSafeList<String> args) {
         // Toggles whether or not the player is currently in selection mode.
-        if (configurationContext.playersSelecting.contains(player.getDisplayName())) {
-            configurationContext.playersSelecting.remove(player.getDisplayName());
-            player.sendMessage("Selection mode disabled.");
-        }
-        else {
-            configurationContext.playersSelecting.add(player.getDisplayName());
-            player.sendMessage("Selection mode activated.");
-        }
+        configurationContext.setPlayerSelecting(player.getName(), !configurationContext.isPlayerSelecting(player.getName()));
+        player.sendMessage(configurationContext.isPlayerSelecting(player.getName()) ? "Selection mode activated." : "Selection mode disabled.");
 
         return true;
     }

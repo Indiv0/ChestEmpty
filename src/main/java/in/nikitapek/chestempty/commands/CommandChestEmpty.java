@@ -6,11 +6,27 @@ import in.nikitapek.chestempty.util.ChestEmptyConfigurationContext;
 import in.nikitapek.chestempty.util.Commands;
 
 import com.amshulman.mbapi.commands.DelegatingCommand;
+import com.amshulman.mbapi.util.PermissionsEnum;
 
-public class CommandChestEmpty extends DelegatingCommand {
+public final class CommandChestEmpty extends DelegatingCommand {
     public CommandChestEmpty(final ChestEmptyConfigurationContext configurationContext) {
         super(configurationContext, Commands.CHESTEMPTY, 1, 1);
         registerSubcommand(new CommandToggle(configurationContext));
         registerSubcommand(new CommandUndo(configurationContext));
+    }
+
+    public enum ChestEmptyCommands implements PermissionsEnum {
+        TOGGLE, UNDO;
+
+        private static final String PREFIX;
+
+        static {
+            PREFIX = Commands.CHESTEMPTY.getPrefix() + Commands.CHESTEMPTY.name() + ".";
+        }
+
+        @Override
+        public String getPrefix() {
+            return PREFIX;
+        }
     }
 }
