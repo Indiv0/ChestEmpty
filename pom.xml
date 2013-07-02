@@ -6,7 +6,7 @@
 	<groupId>in.nikitapek</groupId>
 	<artifactId>chest-empty</artifactId>
 	<name>ChestEmpty</name>
-	<version>${mbapi.version}.1</version>
+	<version>${mbapi.version}.2</version>
 	<description>A Bukkit plugin which allows users to empty chests through clicks.</description>
 	<url>http://dev.bukkit.org/server-mods/chestempty/</url>
 
