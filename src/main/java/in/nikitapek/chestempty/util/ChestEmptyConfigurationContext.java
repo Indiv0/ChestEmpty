@@ -1,10 +1,7 @@
 package in.nikitapek.chestempty.util;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map.Entry;
-
+import com.amshulman.mbapi.MbapiPlugin;
+import com.amshulman.mbapi.util.ConfigurationContext;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -12,8 +9,10 @@ import org.bukkit.block.Chest;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import com.amshulman.mbapi.MbapiPlugin;
-import com.amshulman.mbapi.util.ConfigurationContext;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map.Entry;
 
 public final class ChestEmptyConfigurationContext extends ConfigurationContext {
     // Stores the players currently emptying chests.
