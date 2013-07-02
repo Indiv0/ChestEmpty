@@ -17,10 +17,10 @@
 	</parent>
 
 	<dependencies>
-		<!-- Bukkit -->
+		<!-- Spigot -->
 		<dependency>
-			<groupId>org.bukkit</groupId>
-			<artifactId>bukkit</artifactId>
+			<groupId>org.spigotmc</groupId>
+			<artifactId>spigot-api</artifactId>
 		</dependency>
 		<!-- Mbapi -->
 		<dependency>
