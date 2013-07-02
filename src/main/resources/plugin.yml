@@ -11,18 +11,12 @@ commands:
     description: Controls all ChestEmpty functions.
     aliases: [ce, chest_empty, chestEmpty]
     usage: |
-      /<command> toggle - Toggle selection mode.
-      /<command> undo - Restores last deleted items into the chest.
-    permission: chestempty.chestempty
-    permission-message: Sorry, you don't have permission to use ChestEmpty
-  chestempty toggle:
-    description: Toggles selection mode.
-  chestempty undo:
-    description: Restores the last deleted items into the chest.
+      /<command> toggle - Toggle selection mode
+      /<command> undo - Restores last deleted items into the chest
 
 permissions:
-  chestempty.*:
-    description: Gives access to all ChestEmpty commands
+  chestempty.chestempty.toggle:
     children:
-      chestempty.toggle: true
-      chestempty.undo: true
+      chestempty.chestempty: true
+  chestempty.chestempty.undo:
+      chestempty.chestempty: true
