@@ -17,10 +17,8 @@ commands:
     permission-message: Sorry, you don't have permission to use ChestEmpty
   chestempty toggle:
     description: Toggles selection mode.
-    usage: /<command>
   chestempty undo:
     description: Restores the last deleted items into the chest.
-    permission: chestempty.toggle
 
 permissions:
   chestempty.*:
