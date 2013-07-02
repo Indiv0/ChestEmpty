@@ -8,20 +8,23 @@ dev-url: http://github.com/Indiv0/ChestEmpty/
 
 commands:
   chestempty:
-    description: This command controls all functions of the ChestEmpty plugin.
+    description: Controls all ChestEmpty functions.
     aliases: [ce, chest_empty, chestEmpty]
     usage: |
-      /<command> [toggle|undo]
-      Example: /<command> toggle - Toggles whether or not ChestEmpty is enabled.
-      Example: /<command> undo - Returns the last set of deleted items into the chest.
-    permission: chestempty.use
+      /<command> toggle - Toggle selection mode.
+      /<command> undo - Restores last deleted items into the chest.
+    permission: chestempty.chestempty
     permission-message: Sorry, you don't have permission to use ChestEmpty
+  chestempty toggle:
+    description: Toggles selection mode.
+    usage: /<command>
+  chestempty undo:
+    description: Restores the last deleted items into the chest.
+    permission: chestempty.toggle
 
 permissions:
   chestempty.*:
     description: Gives access to all ChestEmpty commands
     children:
-      chestempty.use: true
-  chestempty.use:
-    description: Allows players to empty chests/undo the last ChestEmpty action
-    default: true
+      chestempty.toggle: true
+      chestempty.undo: true
