@@ -1,4 +1,4 @@
-ChestEmpty [![Travis CI](https://secure.travis-ci.org/Indiv0/ChestEmpty.png)](http://travis-ci.org/#!/Indiv0/ChestEmpty)
+ChestEmpty [![Travis CI](https://secure.travis-ci.org/Indiv0/chest-empty.png)](http://travis-ci.org/#!/Indiv0/chest-empty)
 ===
 
 ChestEmpty is a plugin for bukkit which is used for emptying chests with just a simple click.
