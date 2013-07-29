@@ -10,15 +10,16 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map.Entry;
 
 public final class ChestEmptyConfigurationContext extends ConfigurationContext {
     // Stores the players currently emptying chests.
-    private final ArrayList<String> playersSelecting = new ArrayList<String>();
+    private final Collection<String> playersSelecting = new ArrayList<>();
     // Stores the chests and their last inventories prior to deletion.
-    private final HashMap<Location, ItemStack[]> chestBackups = new HashMap<Location, ItemStack[]>();
+    private final HashMap<Location, ItemStack[]> chestBackups = new HashMap<>();
 
     public ChestEmptyConfigurationContext(final MbapiPlugin plugin) {
         super(plugin);
@@ -60,11 +61,7 @@ public final class ChestEmptyConfigurationContext extends ConfigurationContext {
     }
 
     public boolean isCheckBackedUp(final Location location) {
-        if (isChestBackupsEmpty()) {
-            return false;
-        }
-
-        return chestBackups.containsKey(location);
+        return !isChestBackupsEmpty() && chestBackups.containsKey(location);
     }
 
     public void addChestBackup(final Chest chest) {
