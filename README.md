@@ -6,8 +6,8 @@ ChestEmpty is a plugin for Bukkit which is used for emptying chests with just a 
 
 ### Download
 
-You can find various releases of the plugin at my [maven repository](http://maven.nikitapek.in/repository/internal/in/nikitapek/chest-empty/).
-Alternatively, you can find downloads with detailed changelog information in the [files](http://dev.bukkit.org/bukkit-plugins/chest-empty/files/) section of the plugin's BukkitDev page.
+You can find the latest builds of the plugin at my [ci](http://ci.nikitapek.in/job/chest-empty/).
+You can find stable downloads with detailed changelog information in the [files](http://dev.bukkit.org/bukkit-plugins/chestempty/files/) section of the plugin's BukkitDev page.
 
 ### Installation
 
@@ -25,9 +25,8 @@ ChestEmpty does not have a formal API at the moment, but you can download the la
 
     <repositories>
       <repository>
-        <id>internal</id>
-        <name>Indiv0's Repo</name>
-        <url>http://maven.nikitapek.in/repository/internal/</url>
+        <id>indiv0's Repo</id>
+        <url>http://repo.nikitapek.in/maven/releases</url>
       </repository>
     </repositories>
 
@@ -36,5 +35,5 @@ ChestEmpty does not have a formal API at the moment, but you can download the la
     <dependency>
       <groupId>in.nikitapek</groupId>
       <artifactId>chest-empty</artifactId>
-      <version>1.12.0</version>
+      <version>1.16.0</version>
     </dependency>
